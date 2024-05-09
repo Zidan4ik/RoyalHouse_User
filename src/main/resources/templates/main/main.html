@@ -1,0 +1,228 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <link rel="stylesheet" href="/styles/main-page.css">
+
+
+    <script src="/vuexy/assets/vendor/js/helpers.js"></script>
+    <script src="/vuexy/assets/js/config.js"></script>
+    <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .small-block {
+            position: absolute;
+            top: 80%;
+        }
+
+        .small-block-price {
+            position: absolute;
+            top: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <!-- Layout container -->
+    <div class="layout-container">
+        <!-- Menu -->
+        <div th:insert="~{block/sidebar :: sidebar}"></div>
+        <!--/ Menu -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <div th:insert="~{block/navbar::navbar}"></div>
+            <!--/ Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" style="background-color: white">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="row col-12">
+                            <div class="col-8" style="padding-left: 6px;padding-right: 6px;">
+                                <div class="row">
+                                    <div class="col-6" style="padding-right: 3px;">
+                                        <div class="square">
+                                            <div style="padding-top: 40%">
+                                                <h3 th:text="'Name'"></h3>
+                                            </div>
+                                            <div style="margin-bottom: auto">
+                                                <h4 th:text="'Street'"></h4>
+                                            </div>
+                                            <div style="display: flex; margin-top: auto;">
+                                                <h3 th:text="'area' + ' price'"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" style="padding-left: 3px;">
+                                        <div class="square">
+                                            <div style="padding-top: 40%">
+                                                <h3 th:text="'Name'"></h3>
+                                            </div>
+                                            <div style="margin-bottom: auto">
+                                                <h4 th:text="'Street'"></h4>
+                                            </div>
+                                            <div style="margin-top: auto;">
+                                                <h3 th:text="'area' + ' price'"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="square-horizontal" style="margin-top: 6px">
+                                    <div style="padding-top: 20%">
+                                        <h3 th:text="'Name'"></h3>
+                                    </div>
+                                    <div style="margin-bottom: auto">
+                                        <h4 th:text="'Street'"></h4>
+                                    </div>
+                                    <div style="display: flex; margin-top: auto;">
+                                        <h3 th:text="'area' + ' price'"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4" style="padding-left: 0px;padding-right: 6px;">
+                                <div class="square-vertical">
+                                    <div style="padding-top: 100%">
+                                        <h3 th:text="'Name'"></h3>
+                                    </div>
+                                    <div style="margin-bottom: auto">
+                                        <h4 th:text="'Street'"></h4>
+                                    </div>
+                                    <div style="display: flex; margin-top: auto;">
+                                        <h3 th:text="'area' + ' price'"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-12 pt-1">
+                            <div class="col-4" style="padding-right: 0px;padding-left: 6px;">
+                                <div class="square-vertical">
+                                    <div style="padding-top: 100%">
+                                        <h3 th:text="'Name'"></h3>
+                                    </div>
+                                    <div style="margin-bottom: auto">
+                                        <h4 th:text="'Street'"></h4>
+                                    </div>
+                                    <div style="display: flex; margin-top: auto;">
+                                        <h3 th:text="'area' + ' price'"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8" style="padding-right: 6px;padding-left: 6px;">
+                                <div class="row">
+                                    <div class="col-6" style="padding-right: 6px;">
+                                        <div class="square">
+                                            <div style="padding-top: 40%">
+                                                <h3 th:text="'Name'"></h3>
+                                            </div>
+                                            <div style="margin-bottom: auto">
+                                                <h4 th:text="'Street'"></h4>
+                                            </div>
+                                            <div style="display: flex; margin-top: auto;">
+                                                <h3 th:text="'area' + ' price'"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" style="padding-left: 0px;">
+                                        <div class="square">
+                                            <div style="padding-top: 40%">
+                                                <h3 th:text="'Name'"></h3>
+                                            </div>
+                                            <div style="margin-bottom: auto">
+                                                <h4 th:text="'Street'"></h4>
+                                            </div>
+                                            <div style="display: flex; margin-top: auto;">
+                                                <h3 th:text="'area' + ' price'"></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="square-horizontal" style="margin-top: 6px">
+                                    <div style="padding-top: 20%">
+                                        <h3 th:text="'Name'"></h3>
+                                    </div>
+                                    <div style="margin-bottom: auto">
+                                        <h4 th:text="'Street'"></h4>
+                                    </div>
+                                    <div style="display: flex; margin-top: auto;">
+                                        <h3 th:text="'area' + ' price'"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2 justify-content-center">
+                            <div class="col" style="max-width: 350px">
+                                <div class="card h-100">
+                                    <img class="card-img-top"
+                                         src="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/assets/img/elements/2.jpg"
+                                         alt="Card image cap"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a
+                                            natural lead-in to additional content. This content is a little bit
+                                            longer.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col" style="max-width: 350px">
+                                <div class="card h-100">
+                                    <img class="card-img-top"
+                                         src="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/assets/img/elements/2.jpg"
+                                         alt="Card image cap"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a
+                                            natural lead-in to additional content. This content is a little bit
+                                            longer.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col" style="max-width: 350px">
+                                <div class="card h-100">
+                                    <img class="card-img-top"
+                                         src="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/assets/img/elements/2.jpg"
+                                         alt="Card image cap"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a longer card with supporting text below as a
+                                            natural lead-in to additional content. This content is a little bit
+                                            longer.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    Footer
+                </footer>
+                <!--/ Footer -->
+                <!-- Content area backdrop -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!--/ Content wrapper -->
+
+        </div>
+        <!--/ Layout page -->
+
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<script src="/vuexy/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vuexy/assets/vendor/js/menu.js"></script>
+<script src="/vuexy/assets/js/main.js"></script>
+
+</body>
+</html>
