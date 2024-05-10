@@ -1,0 +1,11 @@
+.card-order {
+    width: auto;
+    height: 450px;
+    background: rgb(159 159 154);
+    /*background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgb(24 14 19) 120%);;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
