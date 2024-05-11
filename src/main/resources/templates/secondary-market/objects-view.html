@@ -1,0 +1,477 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <link rel="stylesheet" href="/styles/card-project.css">
+    <link rel="stylesheet" href="/styles/main-page.css">
+
+
+    <script src="/vuexy/assets/vendor/js/helpers.js"></script>
+    <script src="/vuexy/assets/js/config.js"></script>
+    <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css"/>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <!-- Layout container -->
+    <div class="layout-container">
+        <!-- Menu -->
+        <div th:insert="~{block/sidebar :: sidebar}"></div>
+        <!--/ Menu -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <div th:insert="~{block/navbar::navbar}"></div>
+            <!--/ Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" style="background-color: white">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="mt-5">
+                            <div id="carouselExampleIndicators1" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="${banners.get(0).getBanner()!=null?
+                                            banners.get(0).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${banners.get(1).getBanner()!=null?
+                                            banners.get(1).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${banners.get(2).getBanner()!=null?
+                                            banners.get(2).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="row row-cols-1 row-cols-md-3 g-4 mt-5 justify-content-center">
+                                <!--1 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>0}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(0).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(0).image1!=null?objects.get(0).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(0).image2!=null?objects.get(0).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(0).image3!=null?objects.get(0).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(0).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(0).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(0).rooms}+'/ поверх: '+${objects.get(0).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(0).area}+' м. кв. / '+${objects.get(0).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(0).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 2 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>1}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls2" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(1).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(1).image1!=null?objects.get(1).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(1).image2!=null?objects.get(1).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(1).image3!=null?objects.get(1).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(1).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(1).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(1).rooms}+'/ поверх: '+${objects.get(1).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(1).area}+' м. кв. / '+${objects.get(1).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(1).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 3 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>2}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls3" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(2).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(2).image1!=null?objects.get(2).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(2).image2!=null?objects.get(2).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(2).image3!=null?objects.get(2).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(2).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(2).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(2).rooms}+'/ поверх: '+${objects.get(2).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(2).area}+' м. кв. / '+${objects.get(2).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(2).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 4 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>3}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls4" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(3).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(3).image1!=null?objects.get(3).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(3).image2!=null?objects.get(3).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(3).image3!=null?objects.get(3).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls4" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(3).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(3).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(3).rooms}+'/ поверх: '+${objects.get(3).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(3).area}+' м. кв. / '+${objects.get(3).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(3).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 5 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>4}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls5" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(4).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(4).image1!=null?objects.get(4).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(4).image2!=null?objects.get(4).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(4).image3!=null?objects.get(4).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls5" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls5" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(4).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(4).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(4).rooms}+'/ поверх: '+${objects.get(4).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(4).area}+' м. кв. / '+${objects.get(4).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(4).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 6 object-->
+                                <div class="col-4" style="max-width: 350px" th:if="${objects.size()>5}">
+                                    <div class="card h-100">
+                                        <div id="carouselExampleControls6" class="carousel slide"
+                                             style="width: 326px">
+                                            <a th:href="@{/user/secondary-market/{id}/view (id=${objects.get(5).id})}">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <img th:src="${objects.get(5).image1!=null?objects.get(5).linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(5).image2!=null?objects.get(5).linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img th:src="${objects.get(5).image3!=null?objects.get(5).linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                             class="d-block w-100" alt="..."
+                                                             style="width: 200px;height: 200px">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls6" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#carouselExampleControls6" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center"
+                                                th:text="${objects.get(5).name}"></h5>
+                                            <div>
+                                                <i class="ti ti-map-pin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${objects.get(5).address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${objects.get(5).rooms}+'/ поверх: '+${objects.get(5).getStorey()}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(5).area}+' м. кв. / '+${objects.get(5).getPriceSquareMeter()}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${objects.get(5).getTotalPrice()}+' $'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    Footer
+                </footer>
+                <!--/ Footer -->
+                <!-- Content area backdrop -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!--/ Content wrapper -->
+
+        </div>
+        <!--/ Layout page -->
+
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<script src="/vuexy/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vuexy/assets/vendor/js/menu.js"></script>
+<script src="/vuexy/assets/js/main.js"></script>
+<script src="/vuexy/dist/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <link rel="stylesheet" href="/styles/card-project.css">
+    <link rel="stylesheet" href="/styles/main-page.css">
+
+
+    <script src="/vuexy/assets/vendor/js/helpers.js"></script>
+    <script src="/vuexy/assets/js/config.js"></script>
+    <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css"/>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <!-- Layout container -->
+    <div class="layout-container">
+        <!-- Menu -->
+        <div th:insert="~{block/sidebar :: sidebar}"></div>
+        <!--/ Menu -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <div th:insert="~{block/navbar::navbar}"></div>
+            <!--/ Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" style="background-color: white">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3 th:text="${object.name}"></h3>
+                            </div>
+                            <div id="carouselExampleIndicators1" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="${banners.get(0).getBanner()!=null?
+                                            banners.get(0).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${banners.get(1).getBanner()!=null?
+                                            banners.get(1).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${banners.get(2).getBanner()!=null?
+                                            banners.get(2).linkToBanner():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-2" style="display: inline-block">
+                                <i class="ti ti-map-pin"></i>
+                                <label th:text="${object.address}"></label>
+                            </div>
+                            <div class="col-2" style="display: inline-block">
+                                <i class="ti ti-square"></i>
+                                <label th:text="${object.area}+' м. кв.'"></label>
+                            </div>
+                            <div class="col-2" style="display: inline-block">
+                                <i class="ti ti-door"></i>
+                                <label th:text="${object.rooms}+' кімнат'"></label>
+                            </div>
+                            <div class="col-2" style="display: inline-block">
+                                <i class="ti ti-stairs-up"></i>
+                                <label th:text="${object.storey}+' поверх'"></label>
+                            </div>
+                            <div class="col-2" style="display: inline-block">
+                                <i class="ti ti-cash-banknote"></i>
+                                <label th:text="${object.totalPrice}+' $'"></label>
+                            </div>
+                        </div>
+                        <div class="card-order mt-5">
+                            <form method="post" action="/user/projects/add-order">
+                                <div style="margin-top: 10%;color: black">
+                                    <input class="form-label"
+                                           placeholder="Номер телефону"
+                                           style="font-size: 15px;" name="phone">
+                                    <input class="form-label"
+                                           placeholder="Ім`я"
+                                           style="font-size: 15px;" name="name">
+                                </div>
+                                <div style="padding-top: 5%;text-align: center">
+                                    <button class="btn btn-secondary" type="submit">Замовити перегляд</button>
+                                </div>
+                            </form>
+                            <div style="margin-bottom: 10%;margin-top: 2%">
+                                <label th:text="${'Вулиця: '+object.address}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    Footer
+                </footer>
+                <!--/ Footer -->
+                <!-- Content area backdrop -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!--/ Content wrapper -->
+
+        </div>
+        <!--/ Layout page -->
+
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<script src="/vuexy/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vuexy/assets/vendor/js/menu.js"></script>
+<script src="/vuexy/assets/js/main.js"></script>
+<script src="/vuexy/dist/js/bootstrap.js"></script>
+</body>
+</html>

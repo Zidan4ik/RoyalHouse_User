@@ -34,5 +34,4 @@ public class MapperObject {
                 .map(MapperObject::toDTO)
                 .collect(Collectors.toList());
     }
-
 }
