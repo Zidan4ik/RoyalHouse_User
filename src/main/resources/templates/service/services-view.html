@@ -1,0 +1,119 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <link rel="stylesheet" href="/styles/card-project.css">
+    <link rel="stylesheet" href="/styles/main-page.css">
+
+
+    <script src="/vuexy/assets/vendor/js/helpers.js"></script>
+    <script src="/vuexy/assets/js/config.js"></script>
+    <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css"/>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <!-- Layout container -->
+    <div class="layout-container">
+        <!-- Menu -->
+        <div th:insert="~{block/sidebar :: sidebar}"></div>
+        <!--/ Menu -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <div th:insert="~{block/navbar::navbar}"></div>
+            <!--/ Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" style="background-color: white">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+                        <div class="mt-5">
+                            <div>
+                                <img th:if="${section.banner!=null}"
+                                     th:src="${section.linkBanner()}"
+                                     class="border mb-2"
+                                     style="width: 100%; height: 350px;" alt="error">
+                                <img th:unless="${section.banner!=null}"
+                                     src="https://www.goethe.de/prj/dlp/assets/images/default.png"
+                                     class="border mb-2"
+                                     style="width: 100%; height: 350px;" alt="error">
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Послуги</h3>
+                            </div>
+
+                            <div class="row border mt-5" th:each="i,iterStat:${service}"
+                                 th:if="${iterStat.index % 2 == 0}">
+                                <div class="col-6">
+                                    <img th:src="${i.linkImage()}" style="width: 400px;height: 400px;margin-left: 20%">
+                                </div>
+                                <div class="col-6">
+                                    <div class="col">
+                                        <h3 th:text="'Назва послуги: '+${i.name}"></h3>
+                                    </div>
+                                    <div style="width: auto;height: 300px">
+                                        <p th:text="${!i.getDescription().isEmpty()?i.getDescription():'Тут має бути опис'}"></p>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <a th:href="@{/user/services/{id}/view (id=${i.id})}" class="btn btn-secondary">
+                                            <label>Читать детальніше</label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border mt-5" th:each="i,iterStat:${service}"
+                                 th:if="${iterStat.index % 2 != 0}">
+                                <div class="col-6">
+                                    <div class="col">
+                                        <h3 th:text="'Назва послуги: '+${i.name}"></h3>
+                                    </div>
+                                    <div style="width: auto;height: 300px">
+                                        <p th:text="${!i.getDescription().isEmpty()?i.getDescription():'Тут має бути опис'}"></p>
+                                    </div>
+                                    <div>
+                                        <a th:href="@{/user/services/{id}/view (id=${i.id})}" class="btn btn-secondary">
+                                            <label>Читать детальніше</label>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <img th:src="${i.linkImage()}" style="width: 400px;height: 400px;margin-left: 20%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    Footer
+                </footer>
+                <!--/ Footer -->
+                <!-- Content area backdrop -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!--/ Content wrapper -->
+
+        </div>
+        <!--/ Layout page -->
+
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<script src="/vuexy/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vuexy/assets/vendor/js/menu.js"></script>
+<script src="/vuexy/assets/js/main.js"></script>
+<script src="/vuexy/dist/js/bootstrap.js"></script>
+</body>
+</html>
