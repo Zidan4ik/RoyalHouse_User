@@ -3,6 +3,7 @@ package com.example.royalhouseuser.mapper;
 import com.example.royalhouseuser.entity.Object;
 import com.example.royalhouseuser.entity.Project;
 import com.example.royalhouseuser.entity.unifier.ObjectUnifier;
+import com.example.royalhouseuser.enums.Building;
 import com.example.royalhouseuser.model.ObjectDTO;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,19 @@ public class MapperObject {
         dto.setImage1(unifier.getObject().getImageFirst());
         dto.setImage2(unifier.getObject().getImageSecond());
         dto.setImage3(unifier.getObject().getImageThird());
+
+        if(unifier.getObject().getBuilding().equals(Building.house)){
+            dto.setType("Будинок");
+        }
+        if(unifier.getObject().getBuilding().equals(Building.apartment)){
+            dto.setType("Квартира");
+        }
+        if(unifier.getObject().getBuilding().equals(Building.commercial)){
+            dto.setType("Комерційний");
+        }
+        if(unifier.getObject().getBuilding().equals(Building.plot)){
+            dto.setType("Земельна ділянка");
+        }
 
         return dto;
     }

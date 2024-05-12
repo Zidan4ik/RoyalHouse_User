@@ -12,21 +12,17 @@ import com.example.royalhouseuser.model.CardProjectDTO;
 import com.example.royalhouseuser.model.ObjectDTO;
 import com.example.royalhouseuser.model.ProjectDTO;
 import com.example.royalhouseuser.service.serviceimp.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.nio.file.Path;
 import java.util.*;
 
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class ControllerMain {
+public class ControllerProject {
     private final ProjectServiceImp projectServiceImp;
     private final ObjectServiceImp objectServiceImp;
     private final TextProjectServiceImp textProjectServiceImp;
@@ -105,8 +101,8 @@ public class ControllerMain {
         return model;
     }
 
-    @PostMapping("/projects/add-order")
-    public ModelAndView model(@RequestParam(name = "phone")String phone,
+    @PostMapping("/request/add-order")
+    public ModelAndView addRequest(@RequestParam(name = "phone")String phone,
                               @RequestParam(name = "name")String name){
         ModelAndView model = new ModelAndView("redirect:/user/projects");
         Request request = new Request();
