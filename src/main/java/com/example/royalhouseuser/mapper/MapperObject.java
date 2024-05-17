@@ -21,7 +21,7 @@ public class MapperObject {
         dto.setRooms(String.valueOf(unifier.getObject().getRooms()));
         dto.setStorey(String.valueOf(unifier.getObject().getStorey()));
         dto.setArea(String.valueOf(unifier.getObject().getArea()));
-        dto.setPriceSquareMeter(String.valueOf(Math.round(unifier.getObject().getPrice() / unifier.getObject().getArea())));
+        dto.setPriceSquareMeter(String.valueOf(unifier.getObject().getPriceSquareMeter()));
         dto.setTotalPrice(String.valueOf(unifier.getObject().getPrice()));
 
         dto.setImage1(unifier.getObject().getImageFirst());

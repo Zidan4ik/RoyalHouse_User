@@ -3,15 +3,15 @@
     <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
     <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
     <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
-    <link rel="stylesheet" href="/styles/card-project.css">
-    <link rel="stylesheet" href="/styles/main-page.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 
 
     <script src="/vuexy/assets/vendor/js/helpers.js"></script>
     <script src="/vuexy/assets/js/config.js"></script>
     <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css"/>
+
 </head>
 
 <body>
@@ -80,44 +80,54 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-2" style="display: inline-block">
-                                <i class="ti ti-map-pin"></i>
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-12 d-flex">
+                                <i class="ti ti-map-pin" style="color: orangered;margin-right: 5px;"></i>
                                 <label th:text="${object.address}"></label>
                             </div>
-                            <div class="col-2" style="display: inline-block">
-                                <i class="ti ti-square"></i>
-                                <label th:text="${object.area}+' м. кв.'"></label>
-                            </div>
-                            <div class="col-2" style="display: inline-block">
-                                <i class="ti ti-door"></i>
-                                <label th:text="${object.rooms}+' кімнат'"></label>
-                            </div>
-                            <div class="col-2" style="display: inline-block">
-                                <i class="ti ti-stairs-up"></i>
-                                <label th:text="${object.storey}+' поверх'"></label>
-                            </div>
-                            <div class="col-2" style="display: inline-block">
-                                <i class="ti ti-cash-banknote"></i>
-                                <label th:text="${object.totalPrice}+' $'"></label>
+                            <div class="col-12 mt-3">
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-2 d-flex">
+                                        <i class="ti ti-square" style="color: cornflowerblue;margin-right: 5px;"></i>
+                                        <label th:text="${object.area}+' м. кв.'"></label>
+                                    </div>
+                                    <div class="col-2 d-flex">
+                                        <i class="ti ti-wall" style="color: mediumpurple;margin-right: 5px;"></i>
+                                        <label th:text="${object.rooms}+' кімнати'"></label>
+                                    </div>
+                                    <div class="col-2 d-flex">
+                                        <i class="ti ti-stairs-up" style="color: darkorange;margin-right: 5px"></i>
+                                        <label th:text="${object.storey}+' поверх'"></label>
+                                    </div>
+                                    <div class="col-2 d-flex">
+                                        <i class="ti ti-coin" style="color: green;margin-right: 5px;"></i>
+                                        <label th:text="${object.totalPrice}+' $'"></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-order mt-5">
-                            <form method="post" action="/user/projects/add-order">
-                                <div style="margin-top: 10%;color: black">
-                                    <input class="form-label"
-                                           placeholder="Номер телефону"
-                                           style="font-size: 15px;" name="phone">
-                                    <input class="form-label"
-                                           placeholder="Ім`я"
-                                           style="font-size: 15px;" name="name">
-                                </div>
-                                <div style="padding-top: 5%;text-align: center">
-                                    <button class="btn btn-secondary" type="submit">Замовити перегляд</button>
-                                </div>
-                            </form>
-                            <div style="margin-bottom: 10%;margin-top: 2%">
-                                <label th:text="${'Вулиця: '+object.address}"></label>
+                        <div class="row mt-5 rounded-3" style="background-color: #817e7e">
+                            <div class="col-12">
+                                <form method="post" action="/user/request/add-order">
+                                    <div class="row d-flex justify-content-evenly" style="margin-top: 10%;color: black">
+                                        <div class="col-md-auto">
+                                            <input class="border-0 border-bottom no-background white-text"
+                                                   placeholder="+380 Ваш телефон"
+                                                   style="font-size: 15px;width:100%;color: whitesmoke" name="phone">
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <input class="border-0 border-bottom no-background white-text"
+                                                   placeholder="Ваше ім`я"
+                                                   style="font-size: 15px;width:100%;color: whitesmoke" name="name">
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 5%;text-align: center;">
+                                        <button class="btn btn-white" type="submit">Замовити перегляд</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center" style="margin-bottom: 10%;margin-top: 2%;color: whitesmoke">
+                                <label>Одеська область, с. Усатово, пер. Військовий, 9 тел. +38 (095) 55 43 555</label>
                             </div>
                         </div>
                     </div>

@@ -33,7 +33,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class ControllerMarket {
+public class ControllerObject {
     private final ObjectServiceImp objectServiceImp;
     private final SecondaryMarketServiceImp secondaryMarketServiceImp;
     private final ProjectServiceImp projectServiceImp;
