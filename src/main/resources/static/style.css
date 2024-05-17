@@ -9,6 +9,7 @@
     align-items: center;
     flex-direction: column;
 }
+
 .square {
     width: auto;
     height: 400px;
@@ -44,9 +45,11 @@
     align-items: center;
     flex-direction: column;
 }
-.square-brightness{
+
+.square-brightness {
     filter: brightness(95%);
 }
+
 a.disabled {
     pointer-events: none;
     cursor: default;
@@ -58,7 +61,7 @@ a.disabled {
     height: 70%;
 }
 
-.on-center{
+.on-center {
     display: flex;
     justify-content: center;
 }
@@ -70,10 +73,12 @@ a.disabled {
 .white-text {
     color: white !important;
 }
+
 input:focus {
     outline: none;
     box-shadow: none;
 }
+
 input::placeholder {
     color: white;
     opacity: 1;
@@ -85,4 +90,8 @@ input::placeholder {
     height: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.imgshadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

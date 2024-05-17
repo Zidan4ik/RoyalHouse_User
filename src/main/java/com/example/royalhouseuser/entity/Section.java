@@ -23,5 +23,7 @@ public class Section {
     @Column(length = 215)
     private String description;
     private String banner;
+    private String image1;
+    private String image2;
     private String title;
 }
