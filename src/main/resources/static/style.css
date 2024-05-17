@@ -78,3 +78,11 @@ input::placeholder {
     color: white;
     opacity: 1;
 }
+
+
+.text-service {
+    width: auto;
+    height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

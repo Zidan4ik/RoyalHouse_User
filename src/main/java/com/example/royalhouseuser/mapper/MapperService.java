@@ -17,6 +17,7 @@ public class MapperService {
         dto.setName(entity.getName());
         dto.setImage(entity.getImage());
         dto.setDescription(entity.getDescription());
+        dto.setReflection(entity.isReflection());
 
         return dto;
     }

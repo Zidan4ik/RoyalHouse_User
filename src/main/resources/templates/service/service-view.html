@@ -3,15 +3,15 @@
     <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
     <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
     <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
-    <link rel="stylesheet" href="/styles/card-project.css">
-    <link rel="stylesheet" href="/styles/main-page.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 
 
     <script src="/vuexy/assets/vendor/js/helpers.js"></script>
     <script src="/vuexy/assets/js/config.js"></script>
     <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css"/>
+
 </head>
 
 <body>
@@ -36,7 +36,7 @@
                     <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
                         <div class="mt-5">
                             <div>
-                                <h3>Послуги</h3>
+                                <h3 th:text="${service.getName().isEmpty()?'Назва послуги №'+service.getId() :service.getName()}"></h3>
                             </div>
                             <div>
                                 <img th:if="${service.banner!=null}"
@@ -64,10 +64,8 @@
                 <div class="content-backdrop fade"></div>
             </div>
             <!--/ Content wrapper -->
-
         </div>
         <!--/ Layout page -->
-
     </div>
     <!--/ Layout container -->
 </div>

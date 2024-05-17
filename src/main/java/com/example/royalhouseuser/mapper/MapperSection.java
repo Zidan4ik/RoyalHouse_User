@@ -2,6 +2,7 @@ package com.example.royalhouseuser.mapper;
 
 import com.example.royalhouseuser.entity.Section;
 import com.example.royalhouseuser.enums.SectionType;
+import com.example.royalhouseuser.model.BannerCompanyDTO;
 import com.example.royalhouseuser.model.BannerServiceDTO;
 
 import org.springframework.stereotype.Service;

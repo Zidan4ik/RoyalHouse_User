@@ -13,6 +13,7 @@ public class ServiceDTO {
     private String description;
     private String image;
     private String banner;
+    private boolean isReflection;
 
     public String linkImage(){
         return "/uploads/service/image/"+id+"/"+image;
