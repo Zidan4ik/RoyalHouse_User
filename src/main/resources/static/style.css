@@ -1,0 +1,80 @@
+.card-order {
+    width: auto;
+    height: 450px;
+    background: rgb(159 159 154);
+    /*background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgb(24 14 19) 120%);;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.square {
+    width: auto;
+    height: 400px;
+    background: rgb(232 235 251);
+
+    /*background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgb(24 14 19) 120%);;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.square-vertical {
+    width: auto;
+    height: 806px;
+    background: rgb(232 235 251);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.square-horizontal {
+    width: auto;
+    height: 400px;
+    background: rgb(232 235 251);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.square-brightness{
+    filter: brightness(95%);
+}
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.circle-img {
+    border-radius: 50%;
+    width: 50%;
+    height: 70%;
+}
+
+.on-center{
+    display: flex;
+    justify-content: center;
+}
+
+.no-background {
+    background-color: transparent !important;
+}
+
+.white-text {
+    color: white !important;
+}
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+input::placeholder {
+    color: white;
+    opacity: 1;
+}

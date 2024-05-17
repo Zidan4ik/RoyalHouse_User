@@ -1,23 +1,24 @@
 package com.example.royalhouseuser.controller;
 
+import com.example.royalhouseuser.entity.Contact;
 import com.example.royalhouseuser.entity.Object;
 import com.example.royalhouseuser.entity.Project;
 import com.example.royalhouseuser.entity.SecondaryMarketBanner;
 import com.example.royalhouseuser.entity.unifier.ObjectUnifier;
-import com.example.royalhouseuser.entity.unifier.ProjectUnifier;
+import com.example.royalhouseuser.mapper.MapperContact;
 import com.example.royalhouseuser.mapper.MapperMarketBanner;
 import com.example.royalhouseuser.mapper.MapperObject;
-import com.example.royalhouseuser.mapper.MapperProject;
 import com.example.royalhouseuser.model.BannerMarketDTO;
+import com.example.royalhouseuser.model.ContactDTO;
 import com.example.royalhouseuser.model.ObjectDTO;
-import com.example.royalhouseuser.model.ProjectDTO;
+import com.example.royalhouseuser.service.serviceimp.ContactServiceImp;
 import com.example.royalhouseuser.service.serviceimp.ObjectServiceImp;
 import com.example.royalhouseuser.service.serviceimp.ProjectServiceImp;
 import com.example.royalhouseuser.service.serviceimp.SecondaryMarketServiceImp;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,6 +37,7 @@ public class ControllerMarket {
     private final ObjectServiceImp objectServiceImp;
     private final SecondaryMarketServiceImp secondaryMarketServiceImp;
     private final ProjectServiceImp projectServiceImp;
+    private final ContactServiceImp contactServiceImp;
     @GetMapping("/secondary-market")
     public ModelAndView viewObjects(){
         ModelAndView model = new ModelAndView("secondary-market/objects-view");
@@ -77,5 +79,10 @@ public class ControllerMarket {
         model.addObject("banners",bannersDTO);
         model.addObject("object",cardObjectDTO);
         return model;
+    }
+    @ModelAttribute("contact")
+    public ContactDTO showCountObjects() {
+        Optional<Contact> byId = contactServiceImp.getById(1l);
+        return MapperContact.toDTO(byId.get());
     }
 }

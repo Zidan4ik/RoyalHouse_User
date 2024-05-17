@@ -6,9 +6,11 @@ import com.example.royalhouseuser.entity.unifier.CardProjectUnifier;
 import com.example.royalhouseuser.entity.unifier.ObjectUnifier;
 import com.example.royalhouseuser.entity.unifier.ProjectUnifier;
 import com.example.royalhouseuser.mapper.MapperCardProject;
+import com.example.royalhouseuser.mapper.MapperContact;
 import com.example.royalhouseuser.mapper.MapperObject;
 import com.example.royalhouseuser.mapper.MapperProject;
 import com.example.royalhouseuser.model.CardProjectDTO;
+import com.example.royalhouseuser.model.ContactDTO;
 import com.example.royalhouseuser.model.ObjectDTO;
 import com.example.royalhouseuser.model.ProjectDTO;
 import com.example.royalhouseuser.service.serviceimp.*;
@@ -29,11 +31,10 @@ public class ControllerProject {
     private final SpecificationTextsServiceImp specificationTextsServiceImp;
     private final ImagesProjectServiceImp imagesProjectServiceImp;
     private final InfographicServiceImp infographicServiceImp;
-    private final RequestServiceImp requestServiceImp;
-
+    private final ContactServiceImp contactServiceImp;
     @GetMapping("/projects")
     public ModelAndView viewMain() {
-        ModelAndView model = new ModelAndView("main/main");
+        ModelAndView model = new ModelAndView("project/projects");
         List<Project> projects = projectServiceImp.getAllWithBlock();
 
         List<ObjectUnifier> unifierObject = new ArrayList<>();
@@ -70,7 +71,7 @@ public class ControllerProject {
 
     @GetMapping("/projects/{id}/view")
     public ModelAndView viewProject(@PathVariable(name = "id") Long id) {
-        ModelAndView model = new ModelAndView("main/project-view");
+        ModelAndView model = new ModelAndView("project/project-view");
 
         Optional<Project> projectById = projectServiceImp.getById(id);
         List<InfographicsProjects> infographics = infographicServiceImp.getByProject(projectById.get());
@@ -94,22 +95,21 @@ public class ControllerProject {
         }
 
         List<ProjectDTO> dtoList = projectServiceImp.sortByBlock(MapperProject.toDTOList(unifierProject));
-
+        model.addObject("address",projectById.get().getAddress());
         model.addObject("project", dto);
         model.addObject("objects", objects);
         model.addObject("projectBlock",dtoList);
         return model;
     }
 
-    @PostMapping("/request/add-order")
-    public ModelAndView addRequest(@RequestParam(name = "phone")String phone,
-                              @RequestParam(name = "name")String name){
-        ModelAndView model = new ModelAndView("redirect:/user/projects");
-        Request request = new Request();
-        request.setPhone(phone);
-        request.setFullName(name);
 
-        requestServiceImp.save(request);
-        return model;
+    @ModelAttribute("contact")
+    public ContactDTO showCountObjects() {
+        Optional<Contact> byId = contactServiceImp.getById(1l);
+        if(!byId.isEmpty()){
+            return MapperContact.toDTO(byId.get());
+        }else{
+            return null;
+        }
     }
 }

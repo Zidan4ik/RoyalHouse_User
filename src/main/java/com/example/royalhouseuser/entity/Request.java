@@ -27,4 +27,9 @@ public class Request {
     private String comment;
     private LocalDateTime date;
     private boolean isReported;
+
+    public Request(String fullName, String phone) {
+        this.fullName = fullName;
+        this.phone = phone;
+    }
 }

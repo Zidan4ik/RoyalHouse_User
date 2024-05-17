@@ -1,0 +1,504 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/vuexy/assets/vendor/fonts/tabler-icons.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+
+    <script src="/vuexy/assets/vendor/js/helpers.js"></script>
+    <script src="/vuexy/assets/js/config.js"></script>
+    <script src="/vuexy/assets/vendor/js/template-customizer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <!-- Layout container -->
+    <div class="layout-container">
+        <!-- Menu -->
+        <div th:insert="~{block/sidebar :: sidebar}"></div>
+        <!--/ Menu -->
+
+        <!-- Layout page -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <div th:insert="~{block/navbar::navbar}"></div>
+            <!--/ Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper" style="background-color: white">
+                <!-- Content -->
+                <div class="container-xxl d-flex align-items-stretch flex-grow-1 p-0">
+                    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
+
+                        <div>
+                            <img th:if="${project.banner!=null}"
+                                 th:src="${project.linkBanner()}"
+                                 class="border mb-2"
+                                 style="width: 100%; height: 350px;" alt="error">
+                            <img th:unless="${project.banner!=null}"
+                                 src="https://www.goethe.de/prj/dlp/assets/images/default.png"
+                                 class="border mb-2"
+                                 style="width: 100%; height: 350px;" alt="error">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="row" style="width: 70%">
+                                <div class="col" th:each="i: ${project.getInfographicsMain()}"
+                                     th:if="${i!=null && i.getFile() != null}" style="text-align: center">
+                                    <div class="col circle-block">
+                                        <img class="rounded-3 circle-img"
+                                             th:src="${i.linkFile()}" alt="error">
+                                    </div>
+                                    <div class="col mt-2">
+                                        <label th:text="${i.description}"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-center mt-5">
+                                <h3>Про проект</h3>
+                            </div>
+                            <p th:text="${project.getTextAboutCompany()}"></p>
+                            <div id="carouselExampleIndicators" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="${project.getImagesProjectDTOAboutCompany().image1!=null?
+                                            project.getImagesProjectDTOAboutCompany().linkImages(1):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOAboutCompany().image2!=null?
+                                            project.getImagesProjectDTOAboutCompany().linkImages(2):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOAboutCompany().image3!=null?
+                                            project.getImagesProjectDTOAboutCompany().linkImages(3):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Місце розташування</h3>
+                            </div>
+                            <p th:text="${project.getTextDestination()}"></p>
+
+                            <iframe th:src="@{'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d43825.86886054671!2d' + ${project.getLength()} + '!3d' + ${project.getWidth()} + '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDI2JzM0LjMiTiAzMMKwMjknMzUuMCJF!5e0!3m2!1suk!2sua!4v1679604811208!5m2!1suk!2sua&'}"
+                                    width="100%" height="350px" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Інфраструктура</h3>
+                            </div>
+                            <p th:text="${project.getTextInfrastructure()}"></p>
+                            <div id="carouselExampleIndicators1" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="${project.getImagesProjectDTOInfrastructure().image1!=null?
+                                            project.getImagesProjectDTOInfrastructure().linkImages(1):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOInfrastructure().image2!=null?
+                                            project.getImagesProjectDTOInfrastructure().linkImages(2):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOInfrastructure().image3!=null?
+                                        project.getImagesProjectDTOInfrastructure().linkImages(3):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-5">
+                                <div class="row" style="width: 70%">
+                                    <div class="col" th:each="i: ${project.getInfographicsInfrastructure()}"
+                                         th:if="${i!=null && i.getFile() != null}" style="text-align: center">
+                                        <div class="col circle-block">
+                                            <img class="rounded-3 circle-img"
+                                                 th:src="${i.linkFile()}" alt="error">
+                                        </div>
+                                        <div class="col mt-2">
+                                            <label th:text="${i.description}"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Квартира від розробника</h3>
+                            </div>
+                            <p th:text="${project.getTextApartment()}"></p>
+                            <div id="carouselExampleIndicators2" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="0" class="active" aria-current="true"
+                                            aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img th:src="${project.getImagesProjectDTOApartment().image1!=null?
+                                            project.getImagesProjectDTOApartment().linkImages(1):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOApartment().image2!=null?
+                                            project.getImagesProjectDTOApartment().linkImages(2):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img th:src="${project.getImagesProjectDTOApartment().image3!=null?
+                                        project.getImagesProjectDTOApartment().linkImages(3):'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                             class="d-block w-100" alt="..."
+                                             style="width: 100%; height: 350px;">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-5">
+                                <div class="row" style="width: 70%">
+                                    <div class="col" th:each="i: ${project.getInfographicsApartment()}"
+                                         th:if="${i!=null && i.getFile() != null}" style="text-align: center">
+                                        <div class="col circle-block">
+                                            <img class="rounded-3 circle-img"
+                                                 th:src="${i.linkFile()}" alt="error">
+                                        </div>
+                                        <div class="col mt-2">
+                                            <label th:text="${i.description}"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Квартири</h3>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 justify-content-center">
+                                <div class="col" style="max-width: 350px" th:each="i,index : ${objects}">
+                                    <div class="card h-100">
+                                        <div th:id="'carouselExampleControls'+${index.index}" class="carousel slide"
+                                             style="width: 326px">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img th:src="${i.image1!=null?i.linkToImage1():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                         class="d-block w-100" alt="..."
+                                                         style="width: 200px;height: 200px">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img th:src="${i.image2!=null?i.linkToImage2():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                         class="d-block w-100" alt="..."
+                                                         style="width: 200px;height: 200px">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img th:src="${i.image3!=null?i.linkToImage3():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                                         class="d-block w-100" alt="..."
+                                                         style="width: 200px;height: 200px">
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                    th:data-bs-target="'#carouselExampleControls'+${index.index}"
+                                                    data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                    th:data-bs-target="'#carouselExampleControls'+${index.index}"
+                                                    data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title"
+                                                style="text-align: center;letter-spacing: 5px;font-family: 'Segoe Print';height: 49.3px"
+                                                th:text="'Тип: '+${i.type}"></h5>
+
+                                            <div class="d-flex">
+                                                <i class="ti ti-map-pin" style="color: orangered;"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="${i.address}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-wall" style="color: mediumpurple;"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text="'к-сть кімнат: '+${i.rooms}+'/ поверх: '+${i.storey}"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-cash" style="color: cornflowerblue;"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${i.area}+' м. кв. / '+${i.priceSquareMeter}+' $'"></p>
+                                            </div>
+                                            <div>
+                                                <i class="ti ti-coin" style="color: green;"></i>
+                                                <p class="card-text" style="display: inline-block;"
+                                                   th:text=" ${i.totalPrice}+' $'"></p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted d-flex justify-content-end pt-0 pb-0 mb-2">
+                                            <label th:text="'новобудівля: '+${i.name}"
+                                                   style="font-size: 14px;font-family: 'Segoe Print'"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Панорама</h3>
+                            </div>
+                            <img th:src="${project.panorama!=null?
+                                            project.linkPanorama():'https://www.goethe.de/prj/dlp/assets/images/default.png'}"
+                                 class="border mb-2"
+                                 style="width: 100%; height: 350px;" alt="error">
+                        </div>
+
+                        <div class="mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h3>Cпецифікація про дім</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li th:each="i,iterStat : ${project.getSpecificationsTexts()}"
+                                            th:if="${iterStat.index % 2 == 0  && !i.isEmpty()}">
+                                            <p th:text="${i}"></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li th:each="i,iterStat : ${project.getSpecificationsTexts()}"
+                                            th:if="${iterStat.index % 2 != 0 && !i.isEmpty()}">
+                                            <p th:text="${i}"></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 rounded-3" style="background-color: #817e7e">
+                            <div class="col-12">
+                                <form method="post" action="/user/request/add-order">
+                                    <div class="row d-flex justify-content-evenly" style="margin-top: 10%;color: black">
+                                        <div class="col-md-auto">
+                                                <input class="border-0 border-bottom no-background white-text"
+                                                       placeholder="+380 Ваш телефон"
+                                                       style="font-size: 15px;width:100%;color: whitesmoke" name="phone">
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <input class="border-0 border-bottom no-background white-text"
+                                                   placeholder="Ваше ім`я"
+                                                   style="font-size: 15px;width:100%;color: whitesmoke" name="name">
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 5%;text-align: center;">
+                                        <button class="btn btn-white" type="submit">Замовити перегляд</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center" style="margin-bottom: 10%;margin-top: 2%;color: whitesmoke">
+                                <label>Одеська область, с. Усатово, пер. Військовий, 9 тел. +38 (095) 55 43 555</label>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-8" style="padding-left: 6px;padding-right: 6px;">
+                                <div class="row">
+                                    <div class="col-6" style="padding-right: 3px;">
+                                        <a th:class="${projectBlock.get(0).id!=null?'':'disabled'}"
+                                           th:href="@{/user/projects/{id}/view (id=${projectBlock.get(0).id})}">
+                                            <div class="square"
+                                                 th:classappend="${projectBlock.get(0).id!=null?'':'square-brightness'}">
+                                                <div style="padding-top: 40%">
+                                                    <h3 th:text="${projectBlock.get(0).name!=null ? projectBlock.get(0).name : 'Назва Новобудови №1'}"
+                                                        style="font-family: 'Segoe Print'"></h3>
+                                                </div>
+                                                <div style="margin-bottom: auto;text-align: center">
+                                                    <h4 th:text="${projectBlock.get(0).address!=null ? projectBlock.get(0).address : 'Адреса'}"
+                                                        style="font-family: 'Segoe Print'"></h4>
+                                                </div>
+                                                <div style="margin-bottom: 10%;color: black">
+                                                    <i class="ti ti-home" style="font-size: 25px"></i>
+                                                    <label th:text="${projectBlock.get(0).rangeArea!=null ? projectBlock.get(0).rangeArea : '0-0 м. кв'}"
+                                                           style="font-size: 15px;"></label>
+                                                    <i class="ti ti-currency-dollar" style="font-size: 25px"></i>
+                                                    <label th:text="${projectBlock.get(0).rangePriceSquareMeter!=null ? projectBlock.get(0).rangePriceSquareMeter : '0-0 м. кв'}"
+                                                           style="font-size: 15px;"></label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6" style="padding-left: 3px;">
+                                        <a th:class="${projectBlock.get(1).id!=null?'':'disabled'}"
+                                           th:href="@{/user/projects/{id}/view (id=${projectBlock.get(1).id})}">
+                                            <div class="square"
+                                                 th:classappend="${projectBlock.get(1).id!=null?'':'square-brightness'}">
+                                                <div style="padding-top: 40%">
+                                                    <h3 th:text="${projectBlock.get(1).name!=null ? projectBlock.get(1).name : 'Назва Новобудови №2'}"
+                                                        style="font-family: 'Segoe Print'"></h3>
+                                                </div>
+                                                <div style="margin-bottom: auto;text-align: center">
+                                                    <h4 th:text="${projectBlock.get(1).address!=null ? projectBlock.get(1).address : 'Адреса'}"
+                                                        style="font-family: 'Segoe Print'"></h4>
+                                                </div>
+                                                <div style="margin-bottom: 10%;color: black">
+                                                    <i class="ti ti-home" style="font-size: 25px"></i>
+                                                    <label th:text="${projectBlock.get(1).rangeArea!=null ? projectBlock.get(1).rangeArea : '0-0 м. кв.'}"
+                                                           style="font-size: 15px"></label>
+                                                    <i class="ti ti-currency-dollar" style="font-size: 25px"></i>
+                                                    <label th:text="${projectBlock.get(1).rangePriceSquareMeter!=null ? projectBlock.get(1).rangePriceSquareMeter : '0-0 м. кв.'}"
+                                                           style="font-size: 15px"></label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <a th:class="${projectBlock.get(3).id!=null?'':'disabled'}"
+                                   th:href="@{/user/projects/{id}/view (id=${projectBlock.get(3).id})}">
+                                    <div class="square-horizontal"
+                                         th:classappend="${projectBlock.get(3).id!=null?'':'square-brightness'}"
+                                         style="margin-top: 6px">
+                                        <div style="padding-top: 20%">
+                                            <h3 th:text="${projectBlock.get(3).name!=null ? projectBlock.get(3).name : 'Назва Новобудови №4'}"
+                                                style="font-family: 'Segoe Print'"></h3>
+                                        </div>
+                                        <div style="margin-bottom: auto;text-align: center">
+                                            <h4 th:text="${projectBlock.get(3).address!=null ? projectBlock.get(3).address : 'Адреса'}"
+                                                style="font-family: 'Segoe Print'"></h4>
+                                        </div>
+                                        <div style="margin-bottom: 5%;color: black">
+                                            <i class="ti ti-home" style="font-size: 25px"></i>
+                                            <label th:text="${projectBlock.get(3).rangeArea!=null ? projectBlock.get(3).rangeArea : '0-0 м. кв.'}"
+                                                   style="font-size: 15px"></label>
+                                            <i class="ti ti-currency-dollar" style="font-size: 25px"></i>
+                                            <label th:text="${projectBlock.get(3).rangePriceSquareMeter!=null ? projectBlock.get(3).rangePriceSquareMeter : '0-0 м. кв.'}"
+                                                   style="font-size: 15px"></label>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4" style="padding-left: 0px;padding-right: 6px;">
+                                <a th:class="${projectBlock.get(2).id!=null?'':'disabled'}"
+                                   th:href="@{/user/projects/{id}/view (id=${projectBlock.get(2).id})}">
+                                    <div class="square-vertical"
+                                         th:classappend="${projectBlock.get(2).id!=null?'':'square-brightness'}">
+                                        <div style="padding-top: 100%">
+                                            <h3 th:text="${projectBlock.get(2).name!=null ? projectBlock.get(2).name : 'Назва Новобудови №3'}"
+                                                style="font-family: 'Segoe Print'"></h3>
+                                        </div>
+                                        <div style="margin-bottom: auto;text-align: center">
+                                            <h4 th:text="${projectBlock.get(2).address!=null ? projectBlock.get(2).address : 'адреса'}"
+                                                style="font-family: 'Segoe Print'"></h4>
+                                        </div>
+                                        <div style="margin-bottom: 10%;color: black">
+                                            <i class="ti ti-home" style="font-size: 25px"></i>
+                                            <label th:text="${projectBlock.get(2).rangeArea!=null ? projectBlock.get(2).rangeArea : '0-0 м. кв.'}"
+                                                   style="font-size: 15px"></label>
+                                            <i class="ti ti-currency-dollar" style="font-size: 25px"></i>
+                                            <label th:text="${projectBlock.get(2).rangePriceSquareMeter!=null ? projectBlock.get(2).rangePriceSquareMeter : '0-0 м. кв.'}"
+                                                   style="font-size: 15px"></label>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Content -->
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    Footer
+                </footer>
+                <!--/ Footer -->
+                <!-- Content area backdrop -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!--/ Content wrapper -->
+
+        </div>
+        <!--/ Layout page -->
+
+    </div>
+    <!--/ Layout container -->
+</div>
+<!--/ Layout wrapper -->
+
+<script src="/vuexy/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/vuexy/assets/vendor/js/menu.js"></script>
+<script src="/vuexy/assets/js/main.js"></script>
+<script src="/vuexy/dist/js/bootstrap.js"></script>
+</body>
+</html>
